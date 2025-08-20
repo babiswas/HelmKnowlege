@@ -1,4 +1,7 @@
-helm lint --strict
-helm install release-name /templates --dry-run
-helm --help
+1.helm lint --strict
+2.helm install release-name /templates --dry-run
+3.helm --help
+
+4.helm create myapp
+tree myapp
 
