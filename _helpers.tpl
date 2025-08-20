@@ -34,4 +34,18 @@ data:
   {{- end }}
 
 
+This is how it looks like if defined in helpers.tpl
+====================================================
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-configmap
+  {{- template "mychart.labels" }}
+data:
+  myvalue: "Hello World"
+  {{- range $key, $val := .Values.favorite }}
+  {{ $key }}: {{ $val | quote }}
+  {{- end }}
+
+
 
