@@ -1,1 +1,2 @@
 helm lint --strict
+helm install release-name /templates --dry-run
