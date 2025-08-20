@@ -34,6 +34,8 @@ data:
   {{- end }}
 {{ template "mychart.app" . }}
 
+It is considered preferable to use include over template in Helm templates simply so that the output formatting can be handled better for YAML documents.
+
 
 
 
