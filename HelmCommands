@@ -5,3 +5,6 @@
 4.helm create myapp
 tree myapp
 
+5.helm list -a
+#helm command to list all the versions of a release.
+
