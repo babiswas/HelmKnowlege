@@ -22,3 +22,10 @@ helm upgrade myrelease xyz
 helm rollback myrelease 1
 
 
+helm templating command
+=======================
+helm create xyz
+tree xyz
+helm template xyz
+
+
