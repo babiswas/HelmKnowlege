@@ -11,3 +11,6 @@ tree myapp
 6.helm upgrade release-name myapp
 #Upgrade the application.
 
+7.helm rollback
+#To downgrade the release   to previous versions
+
