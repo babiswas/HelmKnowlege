@@ -8,3 +8,6 @@ tree myapp
 5.helm list -a
 #helm command to list all the versions of a release.
 
+6.helm upgrade release-name myapp
+#Upgrade the application.
+
