@@ -28,4 +28,6 @@ helm create xyz
 tree xyz
 helm template xyz
 
+helm install myrelease myapp --set replicaCount=4
+
 
