@@ -14,3 +14,11 @@ tree myapp
 7.helm rollback myrelease 1
 #To downgrade the release   to previous versions
 
+#Rollback
+------------
+helm create xyz
+helm install myrelease xyz
+helm upgrade myrelease xyz
+helm rollback myrelease 1
+
+
