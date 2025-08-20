@@ -34,3 +34,14 @@ data:
   food: "PIZZA"
   release: viable-badger
 
+Using Range
+===========
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-configmap
+data:
+  myvalue: "Hello World"
+  {{- range $key, $val := .Values.favorite }}
+  {{ $key }}: {{ $val | quote }}
+  {{- end }}
