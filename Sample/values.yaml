@@ -1,18 +1,17 @@
-apiVersion: batch/v1
-kind: Job
-metadata:
-  name: pre-install-job
-  annotations:
-    "helm.sh/hook": pre-install
-    "helm.sh/hook-delete-policy": before-hook-creation,hook-succeeded
-spec:
-  template:
-    spec:
-      containers:
-        - name: setup
-          image: busybox
-          command: ["sh", "-c", "echo Pre-install step running..."]
-      restartPolicy: OnFailure
+flaskApp:
+  image:
+    repository: your-dockerhub-user/your-flask-app
+    tag: latest
+    pullPolicy: IfNotPresent
+  port: 5000
+  env:
+    SECRET_KEY: your-secret
+    DEBUG: "true"
+  preInstallCommands:
+    - name: db-upgrade
+      command: ["flask", "db", "upgrade"]
+    - name: init-users
+      command: ["flask", "init-users"]
 
 
 {{- range .Values.flaskApp.preInstallCommands }}
