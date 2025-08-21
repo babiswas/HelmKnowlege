@@ -1,0 +1,20 @@
+YamlConfig
+=============
+config:
+  logLevel: debug
+  retries: 3
+  features:
+    - login
+    - metrics
+
+
+ToYaml
+========
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: my-config
+data:
+  config.yaml: |
+    {{- toYaml .Values.config | nindent 4 }}
