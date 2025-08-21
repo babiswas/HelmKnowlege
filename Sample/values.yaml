@@ -14,3 +14,33 @@ spec:
           command: ["sh", "-c", "echo Pre-install step running..."]
       restartPolicy: OnFailure
 
+
+{{- range .Values.flaskApp.preInstallCommands }}
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: "{{ $.Release.Name }}-{{ .name }}"
+  annotations:
+    "helm.sh/hook": pre-install
+    "helm.sh/hook-delete-policy": before-hook-creation,hook-succeeded
+spec:
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: "{{ .name }}"
+          image: "{{ $.Values.flaskApp.image.repository }}:{{ $.Values.flaskApp.image.tag }}"
+          imagePullPolicy: {{ $.Values.flaskApp.image.pullPolicy }}
+          command: {{ toJson .command }}
+          env:
+            {{- with $.Values.flaskApp.env }}
+            - name: SECRET_KEY
+              value: "{{ .SECRET_KEY }}"
+            - name: DEBUG
+              value: "{{ .DEBUG }}"
+            {{- end }}
+            - name: DATABASE_URL
+              value: "postgresql://{{ $.Values.postgresql.auth.username }}:{{ $.Values.postgresql.auth.password }}@{{ $.Release.Name }}-postgresql:5432/{{ $.Values.postgresql.auth.database }}"
+{{- end }}
+
+
