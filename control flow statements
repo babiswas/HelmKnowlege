@@ -1,0 +1,67 @@
+Control Flow statements Helm
+============================
+
+Comparision operators in helm:
+1.eq
+2.ne
+3.lt
+4.le
+5.gt
+6.ge
+
+and many more
+
+
+helm create myapp
+cd myapp
+
+
+{{- if .Values.envVars.enabled }}
+env:
+    - name: ENV_VAR_ONE
+      value: {{ .Values.envVars.valueOne | quote }}
+    - name: ENV_VAR_TWO
+      value: {{ .Values.envVars.valueTwo | quote }}
+{{- else }}
+env:
+    - name: ENV_VAR_DEFAULT
+      value: "default_value"
+{{- end }}
+
+helm template myapp
+
+
+ containers:
+        - name: {{ .Chart.Name }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: {{ .Values.service.port }}
+              protocol: TCP
+          {{- with .Values.envVariables }}
+          env:
+            {{- range . }}
+            - name: {{ .name }}
+              value: {{ .value | quote }}
+            {{- end }}
+          {{- end }}
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+
+
+env:
+  {{- range .Values.envVariables }}
+  - name: {{ .name }}
+    value: {{ .value | quote }}
+  {{- end }}
+
+
+
+
+
+
