@@ -1,0 +1,8 @@
+helm Plugins
+=============
+helm plugin install http://xyz
+helm plugin remove
+helm repo add repo_name
+helm repo list
+
+helm diff upgrade release-name package_name --values xyz.yaml
