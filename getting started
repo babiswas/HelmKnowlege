@@ -1,0 +1,41 @@
+Getting started:
+================
+helm create myapp
+myapp/
+  chart.yaml
+  values.yaml
+  template/
+  Files/
+
+helm install release-name myapp
+To install an application on kubernets
+
+helm upgrade release-name myapp 2
+
+_helpers.tpl in template contains all reusable functions.
+
+helm get manifest release-name
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-configmap
+data:
+  myvalue: "Hello World"
+
+
+helm install clunky-serval ./mychart
+
+helm get manifest clunky-serval
+helm install --debug --dry-run goodly-guppy ./mychart
+
+
+
+
+
+
+
+
+
+
+  
