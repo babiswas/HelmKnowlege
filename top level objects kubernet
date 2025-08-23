@@ -1,0 +1,38 @@
+Built in objects
+=================
+keywords
+1.with
+2.range
+3.tuple
+4.Release
+
+Release is top level objects
+Release attributes
+===================
+a)Name
+b)Namespace
+c)IsUpgrade
+d)IsInstall
+e)Revision
+f)Service
+
+Chart Attributes
+=================
+1.Version
+2.Chart name
+
+
+Files Attributes
+================
+1.Get
+2.GetBytes
+3.Glob
+4.Lines
+5.AsSecrets
+6.AsConfig
+
+
+Capabilities Attributes
+==================
+
+All of the atibute sis top level objects
