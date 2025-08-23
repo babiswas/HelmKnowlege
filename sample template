@@ -27,6 +27,18 @@ spec:
             backend:
               service:
                 name: {{ .Release.Name }}-service
+
+
+{{- define "common.tplvalues.render" -}}
+{{- $value := .value -}}
+{{- range $item := $value }}
+- hosts:
+  {{- range $host := $item.hosts }}
+    - {{ $host }}
+  {{- end }}
+  secretName: {{ $item.secretName }}
+{{- end }}
+{{- end }}
                 port:
                   number: 80
 
