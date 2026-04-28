@@ -12,3 +12,29 @@ releases:
     values:
       - ./nginx/vault.yaml.gotmpl
       - image: my.registry.com/nginx
+
+
+
+Sample2
+=========
+
+# Root-level values - available as {{ .Values.KEY }}
+values:
+  - appVersion: "1.0.0"
+    region: "us-west-2"
+    logLevel: "info"
+
+environments:
+  production:
+    values:
+      # This overrides the root-level logLevel
+      - logLevel: "warning"
+
+releases:
+  - name: myapp
+    chart: mychart
+    values:
+      - image:
+          tag: {{ .Values.appVersion }}  # Uses "1.0.0"
+        config:
+          logLevel: {{ .Values.logLevel }}  # Uses "warning" in production
