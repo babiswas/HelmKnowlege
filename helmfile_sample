@@ -1,0 +1,14 @@
+repositories:
+  - name: stable
+    url: https://kubernetes-charts.storage.googleapis.com
+
+releases:
+  - name: my-nginx-server
+    namespace: default
+    labels:
+      app: nginx
+    chart: stable/nginx
+    version: ~1.24.1
+    values:
+      - ./nginx/vault.yaml.gotmpl
+      - image: my.registry.com/nginx
