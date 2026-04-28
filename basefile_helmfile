@@ -49,6 +49,29 @@ To Check the diff
 helmfile -e prod diff
 
 
+Root level values
+==================
+values:
+  - appVersion: "1.0.0"
+    region: "us-west-2"
+    logLevel: "info"
+
+environments:
+  production:
+    values:
+      # This overrides the root-level logLevel
+      - logLevel: "warning"
+
+releases:
+  - name: myapp
+    chart: mychart
+    values:
+      - image:
+          tag: {{ .Values.appVersion }}  # Uses "1.0.0"
+        config:
+          logLevel: {{ .Values.logLevel }}  # Uses "warning" in production
+
+
 
 
 
