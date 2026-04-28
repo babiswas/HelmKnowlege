@@ -1,0 +1,43 @@
+basefile.yaml
+==============
+
+repositories:
+  - name: bitnami
+    url: https://charts.bitnami.com/bitnami
+
+environments:
+  dev:
+    values:
+      - env: dev
+  prod:
+    values:
+      - env: prod
+
+helmDefaults:
+  wait: true
+  timeout: 300
+
+
+helmfile
+==========
+bases:
+  - basefile.yaml
+
+releases:
+  - name: app1
+    namespace: default
+    chart: bitnami/nginx
+    values:
+      - replicaCount: 2
+      - service:
+          type: ClusterIP
+
+  - name: app2
+    namespace: default
+    chart: bitnami/redis
+    values:
+      - architecture: standalone
+      - auth:
+          enabled: false
+
+
