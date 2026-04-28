@@ -1,0 +1,3 @@
+Installing Helm Chart
+=======================
+helm install -f myvalues.yaml myredis ./redis
