@@ -44,6 +44,10 @@ Command to execute on prod
 ===========================
 helmfile -e prod apply
 
+To Check the diff
+==================
+helmfile -e prod diff
+
 
 
 
