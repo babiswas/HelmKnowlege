@@ -1,3 +1,4 @@
 Installing Helm Chart
 =======================
 helm install -f myvalues.yaml myredis ./redis
+helm install -f values.yaml release-name chart-path.
