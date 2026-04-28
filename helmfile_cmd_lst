@@ -1,0 +1,19 @@
+helmfile apply
+helmfile sync
+helmfile diff
+helmfile destroy
+helmfile build
+helmfile template
+helmfile status
+helmfile -e prod apply
+helmfile -e dev diff
+helmfile -l name=app1 sync
+helmfile -l tier=backend apply
+helmfile repos
+helmfile deps
+helmfile helm <args>
+helmfile list
+helmfile write-values
+helmfile repos
+helmfile -e prod diff
+helmfile -e prod apply
