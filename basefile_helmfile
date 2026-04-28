@@ -40,4 +40,20 @@ releases:
       - auth:
           enabled: false
 
+Command to execute on prod
+===========================
+helmfile -e prod apply
+
+
+
+
+
+
+
+
+
+
+
+
+
 
